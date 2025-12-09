@@ -2,7 +2,7 @@
 
 using namespace yuri::core::raw_format;
 
-const NDIlib_v5* load_ndi_library(std::string ndi_path) {
+const NDIlib_v6* load_ndi_library(std::string ndi_path) {
 	// Check if we know the path
 	if (!ndi_path.length()) {
 		auto env_ndi_path = std::getenv("NDI_PATH");
@@ -10,15 +10,15 @@ const NDIlib_v5* load_ndi_library(std::string ndi_path) {
 	}
 	// Load NDI library
 	void* hNDIlib = dlopen(ndi_path.c_str(), RTLD_LOCAL | RTLD_LAZY);
-	const NDIlib_v5* (*NDIlib_v5_load)(void) = nullptr;
+	const NDIlib_v6* (*NDIlib_v6_load)(void) = nullptr;
 	if (hNDIlib)
-		*((void**)&NDIlib_v5_load) = dlsym(hNDIlib, "NDIlib_v5_load");
-	if (!NDIlib_v5_load) {
+		*((void**)&NDIlib_v6_load) = dlsym(hNDIlib, "NDIlib_v6_load");
+	if (!NDIlib_v6_load) {
 		if (hNDIlib)
 			dlclose(hNDIlib);
-		throw yuri::exception::Exception("Could not load NDI library version 5 from location: \""+ndi_path+"\", please download the correct library version.");
+		throw yuri::exception::Exception("Could not load NDI library version 6 from location: \""+ndi_path+"\", please download the correct library version.");
 	}
-	return NDIlib_v5_load();
+	return NDIlib_v6_load();
 }
 
 std::map<NDIlib_FourCC_type_e, yuri::format_t> ndi_to_yuri_pixmap = {

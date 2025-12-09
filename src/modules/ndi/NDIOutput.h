@@ -44,7 +44,7 @@ private:
     bool ptz_;
     std::string ndi_path_;
 
-    const NDIlib_v5* NDIlib_;
+    const NDIlib_v6* NDIlib_;
     NDIlib_send_instance_t pNDI_send_;
 
     core::pRawAudioFrame aframe_to_send_;

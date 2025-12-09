@@ -16,7 +16,7 @@
 
 #include <Processing.NDI.Lib.h>
 
-const NDIlib_v5* load_ndi_library(std::string ndi_path = "");
+const NDIlib_v6* load_ndi_library(std::string ndi_path = "");
 yuri::format_t ndi_format_to_yuri (NDIlib_FourCC_type_e fmt);
 NDIlib_FourCC_type_e yuri_format_to_ndi(yuri::format_t fmt);
 

@@ -54,7 +54,7 @@ private:
 	duration_t event_time_;
 	Timer event_timer_;
 
-	const NDIlib_v5* NDIlib_;
+	const NDIlib_v6* NDIlib_;
 	NDIlib_recv_instance_t ndi_receiver_;
 	NDIlib_find_instance_t ndi_finder_;
 	bool ptz_supported_;
