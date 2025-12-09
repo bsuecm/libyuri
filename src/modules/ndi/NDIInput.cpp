@@ -81,7 +81,7 @@ NDIInput::~NDIInput() {
 std::vector<core::InputDeviceInfo> NDIInput::enumerate() {
 	// Returned devices
 	std::vector<core::InputDeviceInfo> devices;
-	std::vector<std::string> main_param_order = {"address"};
+	std::vector<std::string> main_param_order = {"stream", "address"};
 
 	// Find library
 	auto NDIlib = load_ndi_library();
@@ -107,6 +107,7 @@ std::vector<core::InputDeviceInfo> NDIInput::enumerate() {
 			device.main_param_order = main_param_order;
 			device.device_name = sources[i].p_ndi_name;
 			core::InputDeviceConfig cfg_base;
+			cfg_base.params["stream"]=sources[i].p_ndi_name;
 			cfg_base.params["address"]=sources[i].p_url_address;
 			device.configurations.push_back(std::move(cfg_base));
 			if (std::find_if(devices.begin(), devices.end(), [&] (const core::InputDeviceInfo &device){
