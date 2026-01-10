@@ -44,7 +44,12 @@ add_subdirectory(merge_frames)
 add_subdirectory(mix)
 add_subdirectory(mjpeg_to_jpeg)
 add_subdirectory(mosaic)
-add_subdirectory(ndi)
+
+find_package(NDI)
+IF(NDI_FOUND)
+	add_subdirectory(ndi)
+ENDIF()
+
 add_subdirectory(null)
 add_subdirectory(osc)
 add_subdirectory(overlay)
