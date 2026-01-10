@@ -278,17 +278,16 @@ endif ()
 # Experimental modules
 #################################################################
 
-IF(YURI_BUILD_EXPERIMENTAL_MODULES) 
+IF(YURI_BUILD_EXPERIMENTAL_MODULES)
 
 find_package( Boost 1.46 COMPONENTS regex)
-
+find_library(JSONCPP_LIBRARY jsoncpp)
 
 IF (Boost_REGEX_FOUND)
 	add_subdirectory(webserver)
 	add_subdirectory(file_picker)
 ENDIF()
 
-find_library(JSONCPP_LIBRARY jsoncpp)
 IF(JSONCPP_LIBRARY)
 	add_subdirectory(json_config)
 ENDIF()
